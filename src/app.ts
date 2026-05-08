@@ -18,6 +18,10 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
+app.get('/', (req, res) => {
+  res.json({ message: 'Study Room API is running' });
+});
+
 app.use('/api', healthRouter);
 
 // Swagger UI

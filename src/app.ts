@@ -19,6 +19,10 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
+app.get('/', (req, res) => {
+  res.send('Study Room Realtime Backend is running. Check /api/health for status.');
+});
+
 app.use('/api', healthRouter);
 
 // Error Handler

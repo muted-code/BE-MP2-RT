@@ -1,35 +1,35 @@
-# Study Room - Backend Realtime
+# Study Room - Backend de Tiempo Real
 
-Skeleton for the real-time backend of the Study Room application.
+Esqueleto para el backend de tiempo real de la aplicación Study Room.
 
-## Technologies
+## Tecnologías
 - Node.js
 - TypeScript
 - Express
 - Socket.io
 
-## Installation
+## Instalación
 ```bash
 npm install
 ```
 
-## Development
+## Desarrollo
 ```bash
 npm run dev
 ```
 
-## Build
+## Construcción (Build)
 ```bash
 npm run build
 ```
 
-## Production
+## Producción
 ```bash
 npm start
 ```
 
-## API Endpoints
-- **GET /api/health**: Check service status.
+## Endpoints de la API
+- **GET /api/health**: Verifica el estado del servicio.
 
-## Socket.io Events
-- **ping**: Returns `pong` with a message.
+## Eventos de Socket.io
+- **ping**: Retorna `pong` con un mensaje.

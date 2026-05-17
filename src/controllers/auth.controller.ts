@@ -64,3 +64,26 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     res.status(500).json({ error: error.message || 'Internal server error' });
   }
 };
+
+export const getProfile = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const uid = req.uid;
+
+    if (!uid) {
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
+    }
+
+    const userDoc = await db.collection('users').doc(uid).get();
+
+    if (!userDoc.exists) {
+      res.status(404).json({ error: 'Perfil no encontrado' });
+      return;
+    }
+
+    res.status(200).json(userDoc.data());
+  } catch (error: any) {
+    console.error('Error getting user profile:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
+  }
+};

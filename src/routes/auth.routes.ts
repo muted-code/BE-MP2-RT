@@ -54,7 +54,6 @@ router.get('/check-username/:username', checkUsername);
  *             required:
  *               - username
  *               - name
- *               - lastName
  *             properties:
  *               username:
  *                 type: string

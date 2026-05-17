@@ -32,8 +32,8 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 
     const { username, name, lastName, avatar } = req.body;
 
-    if (!username || !name || !lastName) {
-      res.status(400).json({ error: 'Username, name and lastName are required' });
+    if (!username || !name) {
+      res.status(400).json({ error: 'Username and name are required' });
       return;
     }
 

@@ -17,12 +17,15 @@ app.use(cors({
 }));
 app.use(express.json());
 
+import authRouter from './routes/auth.routes';
+
 // Routes
 app.get('/', (req, res) => {
   res.json({ message: 'Study Room API is running' });
 });
 
 app.use('/api', healthRouter);
+app.use('/api/auth', authRouter);
 
 // Swagger UI
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

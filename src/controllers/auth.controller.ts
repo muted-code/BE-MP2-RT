@@ -30,6 +30,11 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       return;
     }
 
+    if (!email || !email.endsWith('@correounivalle.edu.co')) {
+      res.status(400).json({ error: 'Solo se permiten correos institucionales de la Universidad del Valle (@correounivalle.edu.co)' });
+      return;
+    }
+
     const { username, name, lastName, avatar } = req.body;
 
     if (!username || !name) {

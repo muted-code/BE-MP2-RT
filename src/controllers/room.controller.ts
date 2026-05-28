@@ -63,3 +63,34 @@ export const getMyRooms = async (req: Request, res: Response): Promise<void> => 
     res.status(500).json({ error: error.message || 'Internal server error' });
   }
 };
+
+export const deleteRoom = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const uid = req.uid;
+    const { id } = req.params;
+
+    if (!uid) {
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
+    }
+
+    const roomRef = db.collection('rooms').doc(id as string);
+    const room = await roomRef.get();
+
+    if (!room.exists) {
+      res.status(404).json({ error: 'Room not found' });
+      return;
+    }
+
+    if (room.data()?.createdBy !== uid) {
+      res.status(403).json({ error: 'No tienes permiso para eliminar esta sala' });
+      return;
+    }
+
+    await roomRef.delete();
+    res.status(204).send();
+  } catch (error: any) {
+    console.error('Error deleting room:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
+  }
+};

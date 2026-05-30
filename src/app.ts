@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import http from 'http';
 import { Server } from 'socket.io';
+import { ExpressPeerServer } from 'peer'; // 👈 NUEVO: Importamos el servidor de Peer
 // Importamos el manejador modular que acabamos de crear
 import { registerChatHandlers } from './handlers/chatHandler';
 
@@ -19,6 +20,14 @@ if (process.env.FRONTEND_URL) {
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 const server = http.createServer(app);
+
+// 👇 NUEVO: Levantamos el servidor de señalización WebRTC (PeerJS) 👇
+const peerServer = ExpressPeerServer(server, {
+  path: '/myapp',
+  allow_discovery: true // Opcional: útil para depurar conexiones
+});
+app.use('/peerjs', peerServer);
+
 const io = new Server(server, {
   cors: { origin: allowedOrigins, credentials: true }
 });
@@ -49,5 +58,5 @@ app.get('/', (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🚀 Backend Real-Time (Sockets) corriendo modularmente en puerto ${PORT}`);
+  console.log(`🚀 Backend Real-Time (Sockets y PeerJS) corriendo modularmente en puerto ${PORT}`);
 }); 

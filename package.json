@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "be-rt-mp2",
   "version": "1.0.0",
   "description": "",
@@ -8,28 +9,48 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+=======
+  "name": "be-mp2-rt",
+  "version": "1.0.0",
+  "description": "Study Room Realtime Backend",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
+>>>>>>> 521433072eef715184f6ccb3b8fc2c6e82a83376
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+<<<<<<< HEAD
   "type": "commonjs",
+=======
+>>>>>>> 521433072eef715184f6ccb3b8fc2c6e82a83376
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+<<<<<<< HEAD
     "firebase-admin": "^13.10.0",
     "peer": "^1.0.2",
     "socket.io": "^4.8.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+=======
+    "socket.io": "^4.8.3"
+>>>>>>> 521433072eef715184f6ccb3b8fc2c6e82a83376
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.6.2",
+<<<<<<< HEAD
     "@types/socket.io": "^3.0.1",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
+=======
+>>>>>>> 521433072eef715184f6ccb3b8fc2c6e82a83376
     "ts-node-dev": "^2.0.0",
     "typescript": "^6.0.3"
   }

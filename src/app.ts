@@ -28,14 +28,22 @@ const roomUsers = new Map<string, Map<string, any>>();
 
 // Conexión principal de Sockets
 io.on('connection', (socket) => {
-  console.log(`[Socket-RT] Cliente conectado: ${socket.id}`);
+  const authData = socket.handshake.auth;
+  console.log('[Socket-RT] Auth recibido:', JSON.stringify(authData));
+  
+  // Buscar nombre en cualquier formato que envíe el frontend
+  const name = authData?.user?.name || authData?.name || authData?.username || 'Anónimo';
+  const username = authData?.user?.username || authData?.username || '';
+  const userInfo = username ? `${name} (@${username})` : name;
+
+  console.log(`[Socket-RT] Cliente conectado: ${socket.id} (Usuario: ${userInfo})`);
 
   // Registramos todos los eventos del chat delegándolos al handler externo
   registerChatHandlers(io, socket, roomUsers);
 
   // Manejo de desconexión imprevista
   socket.on('disconnect', () => {
-    console.log(`[Socket-RT] Cliente desconectado: ${socket.id}`);
+    console.log(`[Socket-RT] Cliente desconectado: ${socket.id} (Usuario: ${userInfo})`);
     const roomId = socket.data.roomId;
     if (roomId && roomUsers.has(roomId)) {
       roomUsers.get(roomId)!.delete(socket.id);

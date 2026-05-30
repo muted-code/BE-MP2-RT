@@ -1,25 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-<<<<<<< HEAD
 import dotenv from 'dotenv';
 import http from 'http';
 import { Server } from 'socket.io';
 import { ExpressPeerServer } from 'peer'; // 👈 NUEVO: Importamos el servidor de Peer
 // Importamos el manejador modular que acabamos de crear
 import { registerChatHandlers } from './handlers/chatHandler';
-=======
-import * as dotenv from 'dotenv';
-import http from 'http';
-import healthRouter from './routes/health.routes';
-import { errorHandler } from './middlewares/errorHandler';
-import { initSocket } from './config/socket';
-import { registerSocketHandlers } from './socket';
->>>>>>> 521433072eef715184f6ccb3b8fc2c6e82a83376
 
 dotenv.config();
 
 const app = express();
-<<<<<<< HEAD
 const PORT = process.env.PORT || 3002;
 
 const allowedOrigins = ['http://localhost:5173'];
@@ -69,33 +59,4 @@ app.get('/', (req, res) => {
 
 server.listen(PORT, () => {
   console.log(`🚀 Backend Real-Time (Sockets y PeerJS) corriendo modularmente en puerto ${PORT}`);
-}); 
-=======
-const httpServer = http.createServer(app);
-
-// Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173'
-}));
-app.use(express.json());
-
-// Routes
-app.get('/', (req, res) => {
-  res.send('Study Room Realtime Backend is running. Check /api/health for status.');
 });
-
-app.use('/api', healthRouter);
-
-// Error Handler
-app.use(errorHandler);
-
-// Socket.io
-const io = initSocket(httpServer);
-registerSocketHandlers(io);
-
-const PORT = process.env.PORT || 3002;
-
-httpServer.listen(PORT, () => {
-  console.log(`Backend realtime corriendo en puerto ${PORT}`);
-});
->>>>>>> 521433072eef715184f6ccb3b8fc2c6e82a83376

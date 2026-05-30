@@ -10,9 +10,5 @@
     "skipLibCheck": true
   },
   "include": ["src/**/*"],
-<<<<<<< HEAD
-  "exclude": ["node_modules"]
-=======
   "exclude": ["node_modules", "dist"]
->>>>>>> 521433072eef715184f6ccb3b8fc2c6e82a83376
 }

@@ -88,4 +88,8 @@ export const registerChatHandlers = (
     const estado = data.isVideoOff ? 'APAGÓ' : 'ENCENDIÓ';
     console.log(`[Socket-RT] 📸 El usuario ${data.userName} ${estado} su cámara en la sala ${data.roomId}`);
   });
-}; 
+
+  socket.on('toggle_screen_share', (data: { roomId: string; peerId: string; isSharing: boolean }) => {
+    socket.to(data.roomId).emit('peer_toggled_screen_share', data);
+  });
+};
